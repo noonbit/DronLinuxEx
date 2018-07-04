@@ -1,3 +1,5 @@
+// 주석 추가 
+
 #include <stdio.h>
 
 int main(int argc, char *argv[])
