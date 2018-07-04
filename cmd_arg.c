@@ -1,12 +1,18 @@
-// 주석 추가 
-
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char *argv[])
 {
+  int i;
+
   printf("argc=%d\n", argc);
   printf("argv[0]=%s\n", argv[0]);
   printf("argv[1]=%s\n", argv[1]);
+
+  i = atoi(argv[1]);
+  printf("value[1]=%d\n", i);
+
+  printf("argv[2]=%s\n", argv[2]);
 
   return 0;
 }
