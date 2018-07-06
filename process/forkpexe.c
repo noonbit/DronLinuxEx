@@ -16,22 +16,17 @@ int main(void)
 	printf("Parent Process ID = %d\n", getppid());
 
 	pid = fork();
-	if(pid < 0) 
+
+	switch(pid)
 	{
-		printf("Error : fork() \n");
-		return -1;
-	}
-	else if (pid == 0)
-	{
-		printf("Child : Hello ~~ \n");
-		raise(SIGINT);
-//		return 0;
-//		exit(11);
-	}
-	else
-	{
-		printf("Parents : Hi !!\n");
-		printf("Child PID : %d\n", pid);
+		case -1:
+			printf("Error : fork() \n");
+			return -1;
+		case 0: 		
+			execlp("./pexec", "./pexec", NULL);
+			return -1;
+		default:
+			printf("Child PID : %d\n", pid);
 	}
 
 	pid = wait(&status);
