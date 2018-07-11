@@ -139,7 +139,9 @@ int main()
 // 공유 메모리에 쓰기 -------------------------------------------------
 	printf("width = %d, height = %d \n", width, height);
 	printf("image size = %d \n", size);
-	shmid=shmget((key_t)0x100, size+1, 0666 | IPC_CREAT);
+	printf("padding = %d \n", padding);
+//	shmid=shmget((key_t)0x100, size+1, 0666 | IPC_CREAT);
+	shmid=shmget((key_t)0x100, size, 0666 | IPC_CREAT);
 	shared_memory=shmat(shmid, (void *)0, 0);
 	shared_stuff=(unsigned char *)shared_memory;
 	memcpy(shared_stuff, image, size);

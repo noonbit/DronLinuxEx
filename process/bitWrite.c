@@ -56,13 +56,14 @@ int main()
 
     int size = 29700;          // 픽셀 데이터 크기
     int width=100, height=92;       // 비트맵 이미지의 가로, 세로 크기
+    int padding = 0;
 	int cnt;
 // 공유 메모리에서 읽기 -------------------------------------------------
     FILE *fpTxt;                    // 텍스트 파일 포인터
     unsigned char *image;    // 픽셀 데이터 포인터
 //    int size = 29701;          // 픽셀 데이터 크기
 //    int width=100, height=92;       // 비트맵 이미지의 가로, 세로 크기
-    int padding;             // 픽셀 데이터의 가로 크기가 4의 배수가 아닐 때 남는 공간의 크기
+//    int padding;             // 픽셀 데이터의 가로 크기가 4의 배수가 아닐 때 남는 공간의 크기
 
     // 각 픽셀을 표현할 ASCII 문자. 인덱스가 높을 수록 밝아지는 것을 표현
     char ascii[] = { '#', '#', '@', '%', '=', '+', '*', ':', '-', '.', ' ' };   // 11개
@@ -72,7 +73,8 @@ int main()
 // 공유 메모리에서 읽기 -------------------------------------------------
 
 	printf("image size = %d \n", size);
-	shmid=shmget((key_t)0x100, size+1, 0666 | IPC_CREAT);
+//	shmid=shmget((key_t)0x100, size+1, 0666 | IPC_CREAT);
+	shmid=shmget((key_t)0x100, size, 0666 | IPC_CREAT);
 	shared_memory=shmat(shmid, (void *)0, 0);
 	shared_stuff=(unsigned char *)shared_memory;
 
